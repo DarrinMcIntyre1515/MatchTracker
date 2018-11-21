@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Counter/src/resources/Win_Rate&apos; to &apos;Win_Rate.txt&apos;" description="Rename resource &apos;Win_Rate&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/resources/Win_Rate" name="Win_Rate.txt" stamp="1532176110317" updateReferences="true"/>
+</session>

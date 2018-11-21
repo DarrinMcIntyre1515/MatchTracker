@@ -1,0 +1,102 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
+
+public class main {
+
+	public static void main(String[] args) {
+		// COUNT STUFF!
+		try {
+			int input = Integer.parseInt(args[0]);
+			run(input);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void run (int input) {
+		double[] stats = new double[2];
+		String filename = "./League_Match_History";
+		
+		try(BufferedReader br = new BufferedReader(new FileReader(filename))) {
+			StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
+
+		    while (line != null) {
+		    	if(!(line.contains("Win") || line.contains("---"))) {
+		    		sb.append(line);
+			        sb.append(System.lineSeparator());
+		    	}
+		        line = br.readLine();
+		    }
+		    String everything = sb.toString();
+		    
+		    everything = everything.replaceAll("\\s+", "");
+		    
+		    //optimization --> couldn't we just split on "|" instead of " "? This seems pointless.. check this.
+		    everything = everything.replace("|", " ");
+		    String[] nums = everything.split(" ");
+
+		    for(int x = 0; x < nums.length; x++) {
+		    	stats[x] = Double.parseDouble(nums[x]);
+		    }
+		    
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		if(Integer.)
+		/*
+		if(input == 0) {
+			write(1, stats, filename);
+		} else if (input == 1) {
+			write(-1, stats, filename);
+		} else {
+			System.out.println("Invalid input.");
+		}
+		*/
+	}
+	
+	private static void write (int data, double[] stats, String filename) {
+		try (FileWriter fstream = new FileWriter(filename, false)){
+			try(BufferedWriter out = new BufferedWriter(fstream)){
+				out.write(" Win | Loss");
+				out.newLine();
+				out.write("------------");
+				out.newLine();
+				
+				// If it is a loss, data will be negative, otherwise data is positive.
+				
+				switch(data) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				}
+				
+				if(data > 0) {
+					stats[0] += 1;
+					out.write(stats[0] + " | " + stats[1]);
+					out.newLine();
+				} else if(data < 0) {
+					stats[1] += 1;
+					out.write(stats[0] + " | " + stats[1]);
+					out.newLine();
+				}
+				out.newLine();
+				
+				DecimalFormat dec = new DecimalFormat("#0.00");
+				double ratio = stats[0]/(stats[0]+stats[1])*100;
+				
+				out.write("Win Ratio: " + dec.format(ratio) + "%");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
